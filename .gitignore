@@ -1,0 +1,16 @@
+# secrets and build output
+.vercel/
+.env*
+__pycache__/
+*.pyc
+qa_log.txt
+
+# local-only material (never pushed)
+_local/
+docs/
+design/
+.agent/
+
+# Markdown: only the root README is published
+*.md
+!/README.md

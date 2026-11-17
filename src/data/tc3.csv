@@ -1,0 +1,7 @@
+listing_id,name,type,address,lat,lon,monthly_rent,available_slots,gender_policy,contact,last_updated,notes
+W1,Maa Highway Boarding House,Boarding House,Maa Road Davao City,7.0810,125.6026,3800,5,Mixed,0900-000-0021,2026-11-10,1826m farthest first
+W2,Tulip Drive Apartments,Apartment,Ecoland Tulip Dr Davao City,7.0540,125.5916,3500,1,Female,0900-000-0022,2026-11-11,1413m second
+W3,Juna Grove Bedspace,Bedspace,Juna Subdivision Matina Davao City,7.0585,125.6006,3200,2,Mixed,0900-000-0023,2026-11-12,914m third
+W4,Pangi Creek Dormitory,Dorm,Matina Pangi Rd Davao City,7.0702,125.5936,3000,4,Male,0900-000-0024,2026-11-13,600m fourth
+W5,Aplaya Corner Boarding House,Boarding House,Matina Aplaya Rd Davao City,7.0630,125.5986,2800,3,Female,0900-000-0025,2026-11-14,373m fifth
+W6,Gateview Student Room,Room,Matina Crossing Gate Rd Davao City,7.0675,125.5966,2500,2,Mixed,0900-000-0026,2026-11-15,200m nearest last

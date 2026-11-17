@@ -1,0 +1,723 @@
+{
+  "name": "tc3",
+  "dataset": "tc3",
+  "csv_file": "tc3.csv",
+  "params": {
+    "landmark": "UM Matina Campus",
+    "landmark_coords": [
+      7.0657,
+      125.5966
+    ],
+    "budget": null,
+    "room_type": "ALL",
+    "gender": "ANY",
+    "include_full": false,
+    "sort_by": "distance",
+    "today": "2026-11-16"
+  },
+  "loaded": 6,
+  "matched": 6,
+  "error_prefixes": [],
+  "filtered_input_ids": [
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "W5",
+    "W6"
+  ],
+  "ranked_ids": [
+    "W6",
+    "W5",
+    "W4",
+    "W3",
+    "W2",
+    "W1"
+  ],
+  "distances_m": {
+    "W6": 200,
+    "W5": 373,
+    "W4": 600,
+    "W3": 914,
+    "W2": 1413,
+    "W1": 1826
+  },
+  "rents": {
+    "W6": 2500,
+    "W5": 2800,
+    "W4": 3000,
+    "W3": 3200,
+    "W2": 3500,
+    "W1": 3800
+  },
+  "counts": {
+    "comparisons": 15,
+    "shifts": 15
+  },
+  "formulas": {
+    "best": 5,
+    "worst": 15
+  },
+  "trace": [
+    {
+      "step": 1,
+      "pass": 1,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W2",
+      "state": [
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "W5",
+        "W6"
+      ],
+      "note": "W1 (1826 m, \u20b13800) > key W2 (1413 m, \u20b13500) -> shift"
+    },
+    {
+      "step": 2,
+      "pass": 1,
+      "action": "shift",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W2",
+      "state": [
+        "W1",
+        "W1",
+        "W3",
+        "W4",
+        "W5",
+        "W6"
+      ],
+      "note": "Shift W1 from index 0 to 1"
+    },
+    {
+      "step": 3,
+      "pass": 1,
+      "action": "insert",
+      "indices": [
+        0
+      ],
+      "key": "W2",
+      "state": [
+        "W2",
+        "W1",
+        "W3",
+        "W4",
+        "W5",
+        "W6"
+      ],
+      "note": "Insert key W2 at index 0"
+    },
+    {
+      "step": 4,
+      "pass": 2,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "W3",
+      "state": [
+        "W2",
+        "W1",
+        "W3",
+        "W4",
+        "W5",
+        "W6"
+      ],
+      "note": "W1 (1826 m, \u20b13800) > key W3 (914 m, \u20b13200) -> shift"
+    },
+    {
+      "step": 5,
+      "pass": 2,
+      "action": "shift",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "W3",
+      "state": [
+        "W2",
+        "W1",
+        "W1",
+        "W4",
+        "W5",
+        "W6"
+      ],
+      "note": "Shift W1 from index 1 to 2"
+    },
+    {
+      "step": 6,
+      "pass": 2,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W3",
+      "state": [
+        "W2",
+        "W1",
+        "W1",
+        "W4",
+        "W5",
+        "W6"
+      ],
+      "note": "W2 (1413 m, \u20b13500) > key W3 (914 m, \u20b13200) -> shift"
+    },
+    {
+      "step": 7,
+      "pass": 2,
+      "action": "shift",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W3",
+      "state": [
+        "W2",
+        "W2",
+        "W1",
+        "W4",
+        "W5",
+        "W6"
+      ],
+      "note": "Shift W2 from index 0 to 1"
+    },
+    {
+      "step": 8,
+      "pass": 2,
+      "action": "insert",
+      "indices": [
+        0
+      ],
+      "key": "W3",
+      "state": [
+        "W3",
+        "W2",
+        "W1",
+        "W4",
+        "W5",
+        "W6"
+      ],
+      "note": "Insert key W3 at index 0"
+    },
+    {
+      "step": 9,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "W4",
+      "state": [
+        "W3",
+        "W2",
+        "W1",
+        "W4",
+        "W5",
+        "W6"
+      ],
+      "note": "W1 (1826 m, \u20b13800) > key W4 (600 m, \u20b13000) -> shift"
+    },
+    {
+      "step": 10,
+      "pass": 3,
+      "action": "shift",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "W4",
+      "state": [
+        "W3",
+        "W2",
+        "W1",
+        "W1",
+        "W5",
+        "W6"
+      ],
+      "note": "Shift W1 from index 2 to 3"
+    },
+    {
+      "step": 11,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "W4",
+      "state": [
+        "W3",
+        "W2",
+        "W1",
+        "W1",
+        "W5",
+        "W6"
+      ],
+      "note": "W2 (1413 m, \u20b13500) > key W4 (600 m, \u20b13000) -> shift"
+    },
+    {
+      "step": 12,
+      "pass": 3,
+      "action": "shift",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "W4",
+      "state": [
+        "W3",
+        "W2",
+        "W2",
+        "W1",
+        "W5",
+        "W6"
+      ],
+      "note": "Shift W2 from index 1 to 2"
+    },
+    {
+      "step": 13,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W4",
+      "state": [
+        "W3",
+        "W2",
+        "W2",
+        "W1",
+        "W5",
+        "W6"
+      ],
+      "note": "W3 (914 m, \u20b13200) > key W4 (600 m, \u20b13000) -> shift"
+    },
+    {
+      "step": 14,
+      "pass": 3,
+      "action": "shift",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W4",
+      "state": [
+        "W3",
+        "W3",
+        "W2",
+        "W1",
+        "W5",
+        "W6"
+      ],
+      "note": "Shift W3 from index 0 to 1"
+    },
+    {
+      "step": 15,
+      "pass": 3,
+      "action": "insert",
+      "indices": [
+        0
+      ],
+      "key": "W4",
+      "state": [
+        "W4",
+        "W3",
+        "W2",
+        "W1",
+        "W5",
+        "W6"
+      ],
+      "note": "Insert key W4 at index 0"
+    },
+    {
+      "step": 16,
+      "pass": 4,
+      "action": "compare",
+      "indices": [
+        3,
+        4
+      ],
+      "key": "W5",
+      "state": [
+        "W4",
+        "W3",
+        "W2",
+        "W1",
+        "W5",
+        "W6"
+      ],
+      "note": "W1 (1826 m, \u20b13800) > key W5 (373 m, \u20b12800) -> shift"
+    },
+    {
+      "step": 17,
+      "pass": 4,
+      "action": "shift",
+      "indices": [
+        3,
+        4
+      ],
+      "key": "W5",
+      "state": [
+        "W4",
+        "W3",
+        "W2",
+        "W1",
+        "W1",
+        "W6"
+      ],
+      "note": "Shift W1 from index 3 to 4"
+    },
+    {
+      "step": 18,
+      "pass": 4,
+      "action": "compare",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "W5",
+      "state": [
+        "W4",
+        "W3",
+        "W2",
+        "W1",
+        "W1",
+        "W6"
+      ],
+      "note": "W2 (1413 m, \u20b13500) > key W5 (373 m, \u20b12800) -> shift"
+    },
+    {
+      "step": 19,
+      "pass": 4,
+      "action": "shift",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "W5",
+      "state": [
+        "W4",
+        "W3",
+        "W2",
+        "W2",
+        "W1",
+        "W6"
+      ],
+      "note": "Shift W2 from index 2 to 3"
+    },
+    {
+      "step": 20,
+      "pass": 4,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "W5",
+      "state": [
+        "W4",
+        "W3",
+        "W2",
+        "W2",
+        "W1",
+        "W6"
+      ],
+      "note": "W3 (914 m, \u20b13200) > key W5 (373 m, \u20b12800) -> shift"
+    },
+    {
+      "step": 21,
+      "pass": 4,
+      "action": "shift",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "W5",
+      "state": [
+        "W4",
+        "W3",
+        "W3",
+        "W2",
+        "W1",
+        "W6"
+      ],
+      "note": "Shift W3 from index 1 to 2"
+    },
+    {
+      "step": 22,
+      "pass": 4,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W5",
+      "state": [
+        "W4",
+        "W3",
+        "W3",
+        "W2",
+        "W1",
+        "W6"
+      ],
+      "note": "W4 (600 m, \u20b13000) > key W5 (373 m, \u20b12800) -> shift"
+    },
+    {
+      "step": 23,
+      "pass": 4,
+      "action": "shift",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W5",
+      "state": [
+        "W4",
+        "W4",
+        "W3",
+        "W2",
+        "W1",
+        "W6"
+      ],
+      "note": "Shift W4 from index 0 to 1"
+    },
+    {
+      "step": 24,
+      "pass": 4,
+      "action": "insert",
+      "indices": [
+        0
+      ],
+      "key": "W5",
+      "state": [
+        "W5",
+        "W4",
+        "W3",
+        "W2",
+        "W1",
+        "W6"
+      ],
+      "note": "Insert key W5 at index 0"
+    },
+    {
+      "step": 25,
+      "pass": 5,
+      "action": "compare",
+      "indices": [
+        4,
+        5
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W4",
+        "W3",
+        "W2",
+        "W1",
+        "W6"
+      ],
+      "note": "W1 (1826 m, \u20b13800) > key W6 (200 m, \u20b12500) -> shift"
+    },
+    {
+      "step": 26,
+      "pass": 5,
+      "action": "shift",
+      "indices": [
+        4,
+        5
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W4",
+        "W3",
+        "W2",
+        "W1",
+        "W1"
+      ],
+      "note": "Shift W1 from index 4 to 5"
+    },
+    {
+      "step": 27,
+      "pass": 5,
+      "action": "compare",
+      "indices": [
+        3,
+        4
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W4",
+        "W3",
+        "W2",
+        "W1",
+        "W1"
+      ],
+      "note": "W2 (1413 m, \u20b13500) > key W6 (200 m, \u20b12500) -> shift"
+    },
+    {
+      "step": 28,
+      "pass": 5,
+      "action": "shift",
+      "indices": [
+        3,
+        4
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W4",
+        "W3",
+        "W2",
+        "W2",
+        "W1"
+      ],
+      "note": "Shift W2 from index 3 to 4"
+    },
+    {
+      "step": 29,
+      "pass": 5,
+      "action": "compare",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W4",
+        "W3",
+        "W2",
+        "W2",
+        "W1"
+      ],
+      "note": "W3 (914 m, \u20b13200) > key W6 (200 m, \u20b12500) -> shift"
+    },
+    {
+      "step": 30,
+      "pass": 5,
+      "action": "shift",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W4",
+        "W3",
+        "W3",
+        "W2",
+        "W1"
+      ],
+      "note": "Shift W3 from index 2 to 3"
+    },
+    {
+      "step": 31,
+      "pass": 5,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W4",
+        "W3",
+        "W3",
+        "W2",
+        "W1"
+      ],
+      "note": "W4 (600 m, \u20b13000) > key W6 (200 m, \u20b12500) -> shift"
+    },
+    {
+      "step": 32,
+      "pass": 5,
+      "action": "shift",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W4",
+        "W4",
+        "W3",
+        "W2",
+        "W1"
+      ],
+      "note": "Shift W4 from index 1 to 2"
+    },
+    {
+      "step": 33,
+      "pass": 5,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W4",
+        "W4",
+        "W3",
+        "W2",
+        "W1"
+      ],
+      "note": "W5 (373 m, \u20b12800) > key W6 (200 m, \u20b12500) -> shift"
+    },
+    {
+      "step": 34,
+      "pass": 5,
+      "action": "shift",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "W6",
+      "state": [
+        "W5",
+        "W5",
+        "W4",
+        "W3",
+        "W2",
+        "W1"
+      ],
+      "note": "Shift W5 from index 0 to 1"
+    },
+    {
+      "step": 35,
+      "pass": 5,
+      "action": "insert",
+      "indices": [
+        0
+      ],
+      "key": "W6",
+      "state": [
+        "W6",
+        "W5",
+        "W4",
+        "W3",
+        "W2",
+        "W1"
+      ],
+      "note": "Insert key W6 at index 0"
+    }
+  ]
+}

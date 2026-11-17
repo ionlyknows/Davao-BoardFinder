@@ -1,0 +1,248 @@
+{
+  "name": "tc2",
+  "dataset": "tc2",
+  "csv_file": "tc2.csv",
+  "params": {
+    "landmark": "UM Matina Campus",
+    "landmark_coords": [
+      7.0657,
+      125.5966
+    ],
+    "budget": null,
+    "room_type": "ALL",
+    "gender": "ANY",
+    "include_full": false,
+    "sort_by": "distance",
+    "today": "2026-11-16"
+  },
+  "loaded": 6,
+  "matched": 6,
+  "error_prefixes": [],
+  "filtered_input_ids": [
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6"
+  ],
+  "ranked_ids": [
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6"
+  ],
+  "distances_m": {
+    "B1": 200,
+    "B2": 373,
+    "B3": 600,
+    "B4": 914,
+    "B5": 1413,
+    "B6": 1826
+  },
+  "rents": {
+    "B1": 2500,
+    "B2": 2800,
+    "B3": 3000,
+    "B4": 3200,
+    "B5": 3500,
+    "B6": 3800
+  },
+  "counts": {
+    "comparisons": 5,
+    "shifts": 0
+  },
+  "formulas": {
+    "best": 5,
+    "worst": 15
+  },
+  "trace": [
+    {
+      "step": 1,
+      "pass": 1,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "B2",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "B1 (200 m, \u20b12500) <= key B2 (373 m, \u20b12800) -> stop"
+    },
+    {
+      "step": 2,
+      "pass": 1,
+      "action": "insert",
+      "indices": [
+        1
+      ],
+      "key": "B2",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "Insert key B2 at index 1"
+    },
+    {
+      "step": 3,
+      "pass": 2,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "B3",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "B2 (373 m, \u20b12800) <= key B3 (600 m, \u20b13000) -> stop"
+    },
+    {
+      "step": 4,
+      "pass": 2,
+      "action": "insert",
+      "indices": [
+        2
+      ],
+      "key": "B3",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "Insert key B3 at index 2"
+    },
+    {
+      "step": 5,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "B4",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "B3 (600 m, \u20b13000) <= key B4 (914 m, \u20b13200) -> stop"
+    },
+    {
+      "step": 6,
+      "pass": 3,
+      "action": "insert",
+      "indices": [
+        3
+      ],
+      "key": "B4",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "Insert key B4 at index 3"
+    },
+    {
+      "step": 7,
+      "pass": 4,
+      "action": "compare",
+      "indices": [
+        3,
+        4
+      ],
+      "key": "B5",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "B4 (914 m, \u20b13200) <= key B5 (1413 m, \u20b13500) -> stop"
+    },
+    {
+      "step": 8,
+      "pass": 4,
+      "action": "insert",
+      "indices": [
+        4
+      ],
+      "key": "B5",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "Insert key B5 at index 4"
+    },
+    {
+      "step": 9,
+      "pass": 5,
+      "action": "compare",
+      "indices": [
+        4,
+        5
+      ],
+      "key": "B6",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "B5 (1413 m, \u20b13500) <= key B6 (1826 m, \u20b13800) -> stop"
+    },
+    {
+      "step": 10,
+      "pass": 5,
+      "action": "insert",
+      "indices": [
+        5
+      ],
+      "key": "B6",
+      "state": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "note": "Insert key B6 at index 5"
+    }
+  ]
+}

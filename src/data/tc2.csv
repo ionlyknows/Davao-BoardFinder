@@ -1,0 +1,7 @@
+listing_id,name,type,address,lat,lon,monthly_rent,available_slots,gender_policy,contact,last_updated,notes
+B1,Gateview Student Room,Room,Matina Crossing Gate Rd Davao City,7.0675,125.5966,2500,2,Mixed,0900-000-0011,2026-11-10,200m from UM Matina
+B2,Aplaya Corner Boarding House,Boarding House,Matina Aplaya Rd Davao City,7.0630,125.5986,2800,3,Female,0900-000-0012,2026-11-11,373m from UM Matina
+B3,Pangi Creek Dormitory,Dorm,Matina Pangi Rd Davao City,7.0702,125.5936,3000,4,Male,0900-000-0013,2026-11-12,600m from UM Matina
+B4,Juna Grove Bedspace,Bedspace,Juna Subdivision Matina Davao City,7.0585,125.6006,3200,2,Mixed,0900-000-0014,2026-11-13,914m from UM Matina
+B5,Tulip Drive Apartments,Apartment,Ecoland Tulip Dr Davao City,7.0540,125.5916,3500,1,Female,0900-000-0015,2026-11-14,1413m from UM Matina
+B6,Maa Highway Boarding House,Boarding House,Maa Road Davao City,7.0810,125.6026,3800,5,Mixed,0900-000-0016,2026-11-15,1826m from UM Matina

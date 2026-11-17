@@ -1,0 +1,263 @@
+{
+  "name": "tc5",
+  "dataset": "tc5",
+  "csv_file": "tc5.csv",
+  "params": {
+    "landmark": "UM Matina Campus",
+    "landmark_coords": [
+      7.0657,
+      125.5966
+    ],
+    "budget": null,
+    "room_type": "ALL",
+    "gender": "ANY",
+    "include_full": false,
+    "sort_by": "distance",
+    "today": "2026-11-16"
+  },
+  "loaded": 4,
+  "matched": 4,
+  "error_prefixes": [
+    "Row 6: lat",
+    "Row 7: monthly_rent",
+    "Row 8: type",
+    "Row 9: last_updated",
+    "Row 10: listing_id",
+    "Row 11: last_updated"
+  ],
+  "filtered_input_ids": [
+    "T1",
+    "T2",
+    "T3",
+    "T4"
+  ],
+  "ranked_ids": [
+    "T4",
+    "T2",
+    "T1",
+    "T3"
+  ],
+  "distances_m": {
+    "T4": 200,
+    "T2": 200,
+    "T1": 200,
+    "T3": 200
+  },
+  "rents": {
+    "T4": 2200,
+    "T2": 2800,
+    "T1": 3500,
+    "T3": 3500
+  },
+  "counts": {
+    "comparisons": 5,
+    "shifts": 4
+  },
+  "formulas": {
+    "best": 3,
+    "worst": 6
+  },
+  "trace": [
+    {
+      "step": 1,
+      "pass": 1,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "T2",
+      "state": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "note": "T1 (200 m, \u20b13500) > key T2 (200 m, \u20b12800) -> shift"
+    },
+    {
+      "step": 2,
+      "pass": 1,
+      "action": "shift",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "T2",
+      "state": [
+        "T1",
+        "T1",
+        "T3",
+        "T4"
+      ],
+      "note": "Shift T1 from index 0 to 1"
+    },
+    {
+      "step": 3,
+      "pass": 1,
+      "action": "insert",
+      "indices": [
+        0
+      ],
+      "key": "T2",
+      "state": [
+        "T2",
+        "T1",
+        "T3",
+        "T4"
+      ],
+      "note": "Insert key T2 at index 0"
+    },
+    {
+      "step": 4,
+      "pass": 2,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "T3",
+      "state": [
+        "T2",
+        "T1",
+        "T3",
+        "T4"
+      ],
+      "note": "T1 (200 m, \u20b13500) <= key T3 (200 m, \u20b13500) -> stop"
+    },
+    {
+      "step": 5,
+      "pass": 2,
+      "action": "insert",
+      "indices": [
+        2
+      ],
+      "key": "T3",
+      "state": [
+        "T2",
+        "T1",
+        "T3",
+        "T4"
+      ],
+      "note": "Insert key T3 at index 2"
+    },
+    {
+      "step": 6,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "T4",
+      "state": [
+        "T2",
+        "T1",
+        "T3",
+        "T4"
+      ],
+      "note": "T3 (200 m, \u20b13500) > key T4 (200 m, \u20b12200) -> shift"
+    },
+    {
+      "step": 7,
+      "pass": 3,
+      "action": "shift",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "T4",
+      "state": [
+        "T2",
+        "T1",
+        "T3",
+        "T3"
+      ],
+      "note": "Shift T3 from index 2 to 3"
+    },
+    {
+      "step": 8,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "T4",
+      "state": [
+        "T2",
+        "T1",
+        "T3",
+        "T3"
+      ],
+      "note": "T1 (200 m, \u20b13500) > key T4 (200 m, \u20b12200) -> shift"
+    },
+    {
+      "step": 9,
+      "pass": 3,
+      "action": "shift",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "T4",
+      "state": [
+        "T2",
+        "T1",
+        "T1",
+        "T3"
+      ],
+      "note": "Shift T1 from index 1 to 2"
+    },
+    {
+      "step": 10,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "T4",
+      "state": [
+        "T2",
+        "T1",
+        "T1",
+        "T3"
+      ],
+      "note": "T2 (200 m, \u20b12800) > key T4 (200 m, \u20b12200) -> shift"
+    },
+    {
+      "step": 11,
+      "pass": 3,
+      "action": "shift",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "T4",
+      "state": [
+        "T2",
+        "T2",
+        "T1",
+        "T3"
+      ],
+      "note": "Shift T2 from index 0 to 1"
+    },
+    {
+      "step": 12,
+      "pass": 3,
+      "action": "insert",
+      "indices": [
+        0
+      ],
+      "key": "T4",
+      "state": [
+        "T4",
+        "T2",
+        "T1",
+        "T3"
+      ],
+      "note": "Insert key T4 at index 0"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+listing_id,name,type,address,lat,lon,monthly_rent,available_slots,gender_policy,contact,last_updated,notes
+T1,Matina Twin A Boarding House,Boarding House,Matina Crossing Gate Rd Davao City,7.0675,125.5966,3500,2,Mixed,0900-000-0041,2026-11-10,First 3500 listing at 200m
+T2,Matina Mid-Rent Dorm,Dorm,Matina Crossing Gate Rd Davao City,7.0675,125.5966,2800,3,Female,0900-000-0042,2026-11-11,2800 rent tie-breaker at 200m
+T3,Matina Twin B Boarding House,Boarding House,Matina Crossing Gate Rd Davao City,7.0675,125.5966,3500,1,Male,0900-000-0043,2026-11-12,Second 3500 listing at 200m (stability)
+T4,Matina Budget Bedspace,Bedspace,Matina Crossing Gate Rd Davao City,7.0675,125.5966,2200,4,Mixed,0900-000-0044,2026-11-13,Cheapest 2200 rent at 200m
+X1,Manila Out Of Bounds Room,Room,Recto Ave Manila,14.5995,120.9842,3000,2,Mixed,0900-000-0045,2026-11-10,Invalid lat outside Davao box
+X2,Negative Rent Boarding House,Boarding House,Matina Crossing Davao City,7.0675,125.5966,-500,2,Mixed,0900-000-0046,2026-11-10,Invalid negative monthly_rent
+X3,Invalid Type Condo Unit,Condo,Matina Crossing Davao City,7.0675,125.5966,3000,2,Mixed,0900-000-0047,2026-11-10,Invalid room type Condo
+X4,Impossible Date Dormitory,Dorm,Matina Crossing Davao City,7.0675,125.5966,3000,2,Mixed,0900-000-0048,2026-02-30,Invalid calendar date Feb 30
+T1,Duplicate ID Listing,Room,Matina Crossing Davao City,7.0675,125.5966,3000,2,Mixed,0900-000-0049,2026-11-10,Duplicate listing_id T1
+X6,Future Date Bedspace,Bedspace,Matina Crossing Davao City,7.0675,125.5966,3000,2,Mixed,0900-000-0050,2026-12-01,Future last_updated date

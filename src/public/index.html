@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BoardFinder Davao — Rental Finder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" />
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#resultsSection">Skip to results</a>
+
+  <!-- The map is the page background. Everything else floats on top of it. -->
+  <div id="map" class="map-container" role="region" aria-label="Map of Davao City showing your pin and nearby rooms"></div>
+  <p class="map-pill" id="mapHint">Tap the map to move your pin</p>
+  <div class="map-legend" aria-label="Map legend">
+    <span class="legend-item"><span class="dot dot-target" aria-hidden="true"></span>Your pin</span>
+    <span class="legend-item"><span class="dot dot-room" aria-hidden="true"></span>Room</span>
+    <span class="legend-item"><span class="dot dot-full" aria-hidden="true"></span>Fully booked</span>
+    <span class="legend-item"><span class="dot dot-stale" aria-hidden="true"></span>Not updated recently</span>
+    <span class="legend-item"><span class="dot dot-hub" aria-hidden="true"></span>Landmark (zoom in)</span>
+  </div>
+  <div id="pickBanner" class="pick-banner hidden" role="status">
+    <span>Tap the map to set the room's location.</span>
+    <button type="button" id="pickCancelBtn" class="btn btn-ghost btn-sm">Cancel</button>
+  </div>
+
+  <!-- Floating search bar + hidden filters panel -->
+  <div class="search-stack" id="searchStack">
+    <form class="search-bar" id="searchForm" role="search" aria-label="Find rooms near a place">
+      <span class="search-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
+      <input type="search" id="placeSearchInput" aria-label="Search a school, mall or barangay" placeholder="Search a school, mall or barangay" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="placeSearchResults" />
+      <button type="button" id="useLocationBtn" class="icon-btn icon-btn-flat" aria-label="Use my location" title="Use my location">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+      </button>
+      <button type="button" id="filtersBtn" class="icon-btn filters-btn" aria-label="Filters" title="Filters" aria-expanded="false" aria-controls="filtersPanel">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>
+        <span id="filterBadge" class="filter-badge hidden" aria-hidden="true">0</span>
+      </button>
+      <button type="submit" id="placeSearchBtn" class="btn btn-primary search-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="search-btn-text">Search</span>
+      </button>
+    </form>
+    <ul id="placeSearchResults" class="search-results hidden" role="listbox" aria-label="Place suggestions"></ul>
+    <p class="search-note"><span id="locationMsg" role="status" aria-live="polite"></span><span id="privacyNote">We don't store your location. Place search uses OpenStreetMap.</span></p>
+
+    <section id="filtersPanel" class="filters-panel hidden" aria-label="Filters">
+      <p class="field-label" id="chipsLabel">Popular places</p>
+      <div id="placeChips" class="chips" role="group" aria-labelledby="chipsLabel"></div>
+      <div class="filter-grid">
+        <div class="field">
+          <label for="budgetSelect">Max budget</label>
+          <select id="budgetSelect"></select>
+        </div>
+        <div class="field">
+          <label for="typeSelect">Room type</label>
+          <select id="typeSelect"></select>
+        </div>
+        <div class="field field-wide">
+          <label for="genderSelect">Who is it for?</label>
+          <select id="genderSelect"></select>
+        </div>
+      </div>
+      <label class="checkbox-row" for="includeFullCheck">
+        <input type="checkbox" id="includeFullCheck" />
+        <span>Include fully booked rooms</span>
+      </label>
+      <div class="filters-foot">
+        <p class="hint-text">Results update as you change a filter.</p>
+        <button type="button" id="clearFiltersBtn" class="link-btn">Clear filters</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Left floating panel (desktop) / bottom sheet (mobile) -->
+  <main id="resultsSection" class="panel" aria-label="Results" aria-busy="false">
+    <button type="button" id="sheetHandle" class="sheet-handle" aria-label="Resize the results list">
+      <span aria-hidden="true"></span>
+    </button>
+    <div class="panel-head">
+      <div class="brand-row">
+        <button type="button" id="panelToggleBtn" class="brand-logo" aria-label="Hide results panel" aria-expanded="true" aria-controls="resultsSection" title="Hide results panel">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+        </button>
+        <div class="brand-text">
+          <h1 class="brand-name">BoardFinder Davao</h1>
+          <p class="tagline">Rooms you can afford, near where you need to be</p>
+        </div>
+        <div class="more-menu">
+          <input type="file" id="csvUpload" accept=".csv,text/csv" class="visually-hidden" aria-label="Choose a CSV file to upload" />
+          <button type="button" id="moreMenuBtn" class="btn btn-ghost btn-menu" aria-haspopup="true" aria-expanded="false" aria-controls="moreMenuList">
+            <span>More</span><span class="menu-caret" aria-hidden="true">▾</span>
+          </button>
+          <div id="moreMenuList" class="menu-list hidden" role="menu" aria-label="More actions">
+            <button type="button" id="addListingToggleBtn" class="menu-item" role="menuitem">+ Add Listing</button>
+            <button type="button" id="uploadCsvBtn" class="menu-item" role="menuitem">Upload CSV</button>
+            <button type="button" id="exportCsvBtn" class="menu-item" role="menuitem">Export results</button>
+            <button type="button" id="datasetBtn" class="menu-item" role="menuitem">Use real listings (research)</button>
+            <div class="menu-select">
+              <label for="testCaseSelect">Test data</label>
+              <select id="testCaseSelect" aria-label="Load a course test case">
+                <option value="">Choose…</option>
+                <option value="demo">Demo (50 rooms)</option>
+                <option value="tc1">tc1 · normal case (trace)</option>
+                <option value="tc2">tc2 · best case</option>
+                <option value="tc3">tc3 · worst case</option>
+                <option value="tc4_empty">tc4 · empty file</option>
+                <option value="tc4_single">tc4 · single listing</option>
+                <option value="tc5">tc5 · ties and invalid rows</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-head">
+        <h2 id="resultsTitle">Rooms near UM Matina</h2>
+        <p id="resultsSummary" class="summary-text" role="status" aria-live="polite">Pick a place to see nearby rooms.</p>
+        <p id="dataSource" class="data-source">Using demo data</p>
+      </div>
+
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Sort by">
+          <button type="button" id="sortDistanceBtn" class="seg-btn is-active" aria-pressed="true">Closest</button>
+          <button type="button" id="sortRentBtn" class="seg-btn" aria-pressed="false">Lowest price</button>
+        </div>
+        <button type="button" id="savedChip" class="saved-btn" aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 10c0 5.8-8 11-8 11z"/></svg>
+          <span id="savedLabel">Saved (0)</span>
+        </button>
+      </div>
+      <button type="button" id="compareOpenBtn" class="btn btn-primary btn-sm compare-open hidden">Compare (0)</button>
+      <p id="compareMsg" class="note-text" role="status"></p>
+    </div>
+
+    <div class="panel-scroll" id="panelScroll">
+      <div id="errorBanner" class="banner banner-error hidden" role="alert">
+        <span id="errorText"></span>
+        <button type="button" id="retryBtn" class="btn btn-outline btn-sm">Retry</button>
+      </div>
+
+      <div id="loadingState" class="loading-state hidden" role="status">
+        <span class="spinner" aria-hidden="true"></span> Finding rooms…
+      </div>
+
+      <div id="skippedBanner" class="banner banner-warn hidden">
+        <div class="skipped-header">
+          <span id="skippedCountText"></span>
+          <button type="button" id="toggleSkippedBtn" class="btn btn-ghost btn-sm" aria-expanded="false">View details</button>
+        </div>
+        <ul id="skippedList" class="skipped-list hidden"></ul>
+      </div>
+
+      <div id="cardsList" class="cards-list"></div>
+
+      <button type="button" id="showMoreBtn" class="btn btn-outline btn-full hidden">Show more rooms</button>
+
+      <div id="emptyState" class="empty-state hidden">
+        <p id="emptyText">No rooms found.</p>
+        <div class="empty-actions">
+          <button type="button" id="raiseBudgetBtn" class="btn btn-primary hidden">Raise budget</button>
+          <button type="button" id="emptyClearBtn" class="btn btn-outline">Clear filters</button>
+        </div>
+      </div>
+
+      <details class="safety-card" id="scamSafetyCard">
+        <summary class="safety-summary">Scam safety · Before you pay checklist</summary>
+        <ul class="safety-list">
+          <li><strong>Never pay a reservation fee or deposit before visiting in person.</strong> Avoid GCash or bank transfers just to "hold" a room.</li>
+          <li><strong>Inspect the room and meet the caretaker on-site.</strong> Check door/window locks, water supply, sub-meter readings, and street flood history.</li>
+          <li><strong>Confirm what is included in writing.</strong> Under Philippine rent control (RA 9653, rent ≤ ₱10,000), landlords may ask at most 1 month advance and 2 months deposit.</li>
+          <li><strong>Watch for red flags:</strong> "Too good to be true" aircon studios at ₱1,000–₱2,000, pressure to pay immediately, or refusal to allow an in-person viewing.</li>
+        </ul>
+      </details>
+
+      <details class="trace-panel">
+      <summary class="trace-summary">For developers · How results are ranked</summary>
+      <p class="hint-text">Results are ordered with a hand-written Insertion Sort. Replay the steps below (shown for up to 50 matching rooms).</p>
+      <div class="card-header">
+        <p id="traceCountsBar" class="summary-text">Comparisons: 0 · Shifts: 0 | Best (k-1): 0 · Worst k(k-1)/2: 0</p>
+        <div class="trace-controls">
+          <button type="button" id="traceNextBtn" class="btn btn-outline">Next</button>
+          <button type="button" id="traceRunBtn" class="btn btn-primary">Run All</button>
+          <button type="button" id="traceResetBtn" class="btn btn-ghost">Reset</button>
+        </div>
+      </div>
+      <div id="traceStepInfo" class="trace-meta">
+        <span>Pass: -</span>
+        <span>Step: -</span>
+        <span>Action: -</span>
+        <span>Indices: -</span>
+        <span>Key: -</span>
+        <span>Note: Run a search to inspect the trace.</span>
+      </div>
+      <div id="traceStateStrip" class="trace-state-strip" aria-label="Array State"></div>
+    </details>
+    </div>
+  </main>
+
+  <!-- Add Listing dialog -->
+  <div id="addListingPanel" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="addListingTitle">
+    <div class="modal-card">
+      <div class="drawer-header">
+        <h2 id="addListingTitle">Add Listing (this session only)</h2>
+        <button type="button" id="addListingCloseBtn" class="btn btn-ghost btn-sm">Close</button>
+      </div>
+      <form id="addListingForm" class="add-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="addName">Name *</label>
+            <input type="text" id="addName" maxlength="80" placeholder="e.g. Matina Haven Dorm" />
+            <p class="field-error" id="addNameErr" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="addType">Type</label>
+            <select id="addType">
+              <option value="Bedspace">Bedspace</option>
+              <option value="Boarding House">Boarding House</option>
+              <option value="Dorm">Dorm</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Room">Room</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="addAddress">Address *</label>
+            <input type="text" id="addAddress" maxlength="120" placeholder="Street / Barangay, Davao City" />
+            <p class="field-error" id="addAddressErr" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="addContact">Contact *</label>
+            <input type="text" id="addContact" maxlength="60" placeholder="09xx-xxx-xxxx" />
+            <p class="field-error" id="addContactErr" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="addLat">Latitude *</label>
+            <input type="number" id="addLat" step="any" placeholder="7.0644" />
+            <p class="field-error" id="addLatErr" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="addLon">Longitude *</label>
+            <input type="number" id="addLon" step="any" placeholder="125.5960" />
+            <p class="field-error" id="addLonErr" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="addRent">Rent (₱ per month) *</label>
+            <input type="number" id="addRent" min="1" step="1" placeholder="3200" />
+            <p class="field-error" id="addRentErr" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="addSlots">Slots *</label>
+            <input type="number" id="addSlots" min="0" step="1" value="1" />
+            <p class="field-error" id="addSlotsErr" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="addGender">Who is it for?</label>
+            <select id="addGender">
+              <option value="Mixed">Mixed</option>
+              <option value="Female">Female only</option>
+              <option value="Male">Male only</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="addNotes">Notes</label>
+            <input type="text" id="addNotes" maxlength="200" placeholder="Wi-Fi, curfew, utilities..." />
+          </div>
+        </div>
+        <div class="drawer-footer">
+          <button type="button" id="pickOnMapBtn" class="btn btn-outline">Pick location on map</button>
+          <span id="pickOnMapHint" class="hint-text" role="status"></span>
+          <div class="drawer-buttons">
+            <button type="button" id="addListingCancelBtn" class="btn btn-ghost">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add &amp; re-rank</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Compare dialog -->
+  <div id="comparePanel" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="compareTitle">
+    <div class="modal-card modal-wide">
+      <div class="drawer-header">
+        <h2 id="compareTitle">Compare rooms</h2>
+        <button type="button" id="compareCloseBtn" class="btn btn-ghost btn-sm">Close</button>
+      </div>
+      <div id="compareBody" class="compare-scroll"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin="anonymous"></script>
+  <script src="map.js"></script>
+  <script src="trace.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

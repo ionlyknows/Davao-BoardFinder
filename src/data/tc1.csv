@@ -1,0 +1,9 @@
+listing_id,name,type,address,lat,lon,monthly_rent,available_slots,gender_policy,contact,last_updated,notes
+L1,Sampaguita Ladies Bedspace,Bedspace,Matina Crossing Gate Rd Davao City,7.0675,125.5966,2500,0,Female,0900-000-0001,2026-11-10,Near UM Matina gate (full)
+L2,Narra Studio Rooms,Room,Matina Aplaya Rd Davao City,7.0630,125.5986,4500,2,Female,0900-000-0002,2026-11-12,Aircon room over 4000 budget
+L3,Molave Men's Dormitory,Dorm,Matina Pangi Rd Davao City,7.0702,125.5936,3000,3,Male,0900-000-0003,2026-11-08,Male-only dorm near Pangi
+L4,Juna Courtyard Boarding House,Boarding House,Juna Subdivision Matina Davao City,7.0585,125.6006,3200,3,Female,0900-000-0004,2026-11-01,Quiet street with study area
+L5,Aplaya Breeze Apartments,Apartment,Matina Aplaya Rd Davao City,7.0630,125.5986,3800,2,Mixed,0900-000-0005,2026-10-01,Stale listing (>30 days old)
+L6,Maa Budget Bedspace,Bedspace,Maa Road Davao City,7.0810,125.6026,2500,5,Female,0900-000-0006,2026-11-14,Cheapest match along jeepney route
+L7,Matina Gate Student Rooms,Room,Matina Crossing Gate Rd Davao City,7.0675,125.5966,4000,1,Female,0900-000-0007,2026-11-15,Nearest match to UM Matina gate
+L8,Pangi Co-Ed Student Dorm,Dorm,Matina Pangi Rd Davao City,7.0702,125.5936,2800,4,Mixed,0900-000-0008,2026-11-05,Free Wi-Fi and laundry area

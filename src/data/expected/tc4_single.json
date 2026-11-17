@@ -1,0 +1,42 @@
+{
+  "name": "tc4_single",
+  "dataset": "tc4_single",
+  "csv_file": "tc4_single.csv",
+  "params": {
+    "landmark": "UM Matina Campus",
+    "landmark_coords": [
+      7.0657,
+      125.5966
+    ],
+    "budget": null,
+    "room_type": "ALL",
+    "gender": "ANY",
+    "include_full": false,
+    "sort_by": "distance",
+    "today": "2026-11-16"
+  },
+  "loaded": 1,
+  "matched": 1,
+  "error_prefixes": [],
+  "filtered_input_ids": [
+    "S1"
+  ],
+  "ranked_ids": [
+    "S1"
+  ],
+  "distances_m": {
+    "S1": 200
+  },
+  "rents": {
+    "S1": 3000
+  },
+  "counts": {
+    "comparisons": 0,
+    "shifts": 0
+  },
+  "formulas": {
+    "best": 0,
+    "worst": 0
+  },
+  "trace": []
+}

@@ -1,0 +1,379 @@
+{
+  "name": "tc1_distance",
+  "dataset": "tc1",
+  "csv_file": "tc1.csv",
+  "params": {
+    "landmark": "UM Matina Campus",
+    "landmark_coords": [
+      7.0657,
+      125.5966
+    ],
+    "budget": 4000,
+    "room_type": "ALL",
+    "gender": "Female",
+    "include_full": false,
+    "sort_by": "distance",
+    "today": "2026-11-16"
+  },
+  "loaded": 8,
+  "matched": 5,
+  "error_prefixes": [],
+  "filtered_input_ids": [
+    "L4",
+    "L5",
+    "L6",
+    "L7",
+    "L8"
+  ],
+  "ranked_ids": [
+    "L7",
+    "L5",
+    "L8",
+    "L4",
+    "L6"
+  ],
+  "distances_m": {
+    "L7": 200,
+    "L5": 373,
+    "L8": 600,
+    "L4": 914,
+    "L6": 1826
+  },
+  "rents": {
+    "L7": 4000,
+    "L5": 3800,
+    "L8": 2800,
+    "L4": 3200,
+    "L6": 2500
+  },
+  "counts": {
+    "comparisons": 8,
+    "shifts": 6
+  },
+  "formulas": {
+    "best": 4,
+    "worst": 10
+  },
+  "trace": [
+    {
+      "step": 1,
+      "pass": 1,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "L5",
+      "state": [
+        "L4",
+        "L5",
+        "L6",
+        "L7",
+        "L8"
+      ],
+      "note": "L4 (914 m, \u20b13200) > key L5 (373 m, \u20b13800) -> shift"
+    },
+    {
+      "step": 2,
+      "pass": 1,
+      "action": "shift",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "L5",
+      "state": [
+        "L4",
+        "L4",
+        "L6",
+        "L7",
+        "L8"
+      ],
+      "note": "Shift L4 from index 0 to 1"
+    },
+    {
+      "step": 3,
+      "pass": 1,
+      "action": "insert",
+      "indices": [
+        0
+      ],
+      "key": "L5",
+      "state": [
+        "L5",
+        "L4",
+        "L6",
+        "L7",
+        "L8"
+      ],
+      "note": "Insert key L5 at index 0"
+    },
+    {
+      "step": 4,
+      "pass": 2,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "L6",
+      "state": [
+        "L5",
+        "L4",
+        "L6",
+        "L7",
+        "L8"
+      ],
+      "note": "L4 (914 m, \u20b13200) <= key L6 (1826 m, \u20b12500) -> stop"
+    },
+    {
+      "step": 5,
+      "pass": 2,
+      "action": "insert",
+      "indices": [
+        2
+      ],
+      "key": "L6",
+      "state": [
+        "L5",
+        "L4",
+        "L6",
+        "L7",
+        "L8"
+      ],
+      "note": "Insert key L6 at index 2"
+    },
+    {
+      "step": 6,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "L7",
+      "state": [
+        "L5",
+        "L4",
+        "L6",
+        "L7",
+        "L8"
+      ],
+      "note": "L6 (1826 m, \u20b12500) > key L7 (200 m, \u20b14000) -> shift"
+    },
+    {
+      "step": 7,
+      "pass": 3,
+      "action": "shift",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "L7",
+      "state": [
+        "L5",
+        "L4",
+        "L6",
+        "L6",
+        "L8"
+      ],
+      "note": "Shift L6 from index 2 to 3"
+    },
+    {
+      "step": 8,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "L7",
+      "state": [
+        "L5",
+        "L4",
+        "L6",
+        "L6",
+        "L8"
+      ],
+      "note": "L4 (914 m, \u20b13200) > key L7 (200 m, \u20b14000) -> shift"
+    },
+    {
+      "step": 9,
+      "pass": 3,
+      "action": "shift",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "L7",
+      "state": [
+        "L5",
+        "L4",
+        "L4",
+        "L6",
+        "L8"
+      ],
+      "note": "Shift L4 from index 1 to 2"
+    },
+    {
+      "step": 10,
+      "pass": 3,
+      "action": "compare",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "L7",
+      "state": [
+        "L5",
+        "L4",
+        "L4",
+        "L6",
+        "L8"
+      ],
+      "note": "L5 (373 m, \u20b13800) > key L7 (200 m, \u20b14000) -> shift"
+    },
+    {
+      "step": 11,
+      "pass": 3,
+      "action": "shift",
+      "indices": [
+        0,
+        1
+      ],
+      "key": "L7",
+      "state": [
+        "L5",
+        "L5",
+        "L4",
+        "L6",
+        "L8"
+      ],
+      "note": "Shift L5 from index 0 to 1"
+    },
+    {
+      "step": 12,
+      "pass": 3,
+      "action": "insert",
+      "indices": [
+        0
+      ],
+      "key": "L7",
+      "state": [
+        "L7",
+        "L5",
+        "L4",
+        "L6",
+        "L8"
+      ],
+      "note": "Insert key L7 at index 0"
+    },
+    {
+      "step": 13,
+      "pass": 4,
+      "action": "compare",
+      "indices": [
+        3,
+        4
+      ],
+      "key": "L8",
+      "state": [
+        "L7",
+        "L5",
+        "L4",
+        "L6",
+        "L8"
+      ],
+      "note": "L6 (1826 m, \u20b12500) > key L8 (600 m, \u20b12800) -> shift"
+    },
+    {
+      "step": 14,
+      "pass": 4,
+      "action": "shift",
+      "indices": [
+        3,
+        4
+      ],
+      "key": "L8",
+      "state": [
+        "L7",
+        "L5",
+        "L4",
+        "L6",
+        "L6"
+      ],
+      "note": "Shift L6 from index 3 to 4"
+    },
+    {
+      "step": 15,
+      "pass": 4,
+      "action": "compare",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "L8",
+      "state": [
+        "L7",
+        "L5",
+        "L4",
+        "L6",
+        "L6"
+      ],
+      "note": "L4 (914 m, \u20b13200) > key L8 (600 m, \u20b12800) -> shift"
+    },
+    {
+      "step": 16,
+      "pass": 4,
+      "action": "shift",
+      "indices": [
+        2,
+        3
+      ],
+      "key": "L8",
+      "state": [
+        "L7",
+        "L5",
+        "L4",
+        "L4",
+        "L6"
+      ],
+      "note": "Shift L4 from index 2 to 3"
+    },
+    {
+      "step": 17,
+      "pass": 4,
+      "action": "compare",
+      "indices": [
+        1,
+        2
+      ],
+      "key": "L8",
+      "state": [
+        "L7",
+        "L5",
+        "L4",
+        "L4",
+        "L6"
+      ],
+      "note": "L5 (373 m, \u20b13800) <= key L8 (600 m, \u20b12800) -> stop"
+    },
+    {
+      "step": 18,
+      "pass": 4,
+      "action": "insert",
+      "indices": [
+        2
+      ],
+      "key": "L8",
+      "state": [
+        "L7",
+        "L5",
+        "L8",
+        "L4",
+        "L6"
+      ],
+      "note": "Insert key L8 at index 2"
+    }
+  ]
+}
