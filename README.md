@@ -2,6 +2,8 @@
 
 A web app for finding boarding houses, dorms, bedspaces, apartments and rooms across **Davao City**. It filters listings by budget, room type, who the room is for and open slots, then **ranks them with Insertion Sort**, nearest first or cheapest first, from any school, mall or barangay, or from any spot you tap on the map.
 
+**Live demo:** https://davao-boardfinder.vercel.app/
+
 Course project for Algorithms (BSCS-2A). The graded algorithm lives in `src/core/algorithm.py`.
 
 ## Features
@@ -38,6 +40,8 @@ python -m unittest discover -s tests -p "test_*.py" -v    # 52 tests
 `python qa.py --quick` runs checks 1-3 and `--core` runs checks 1-7.
 
 ## Deploy to Vercel
+The project is deployed at https://davao-boardfinder.vercel.app/. To deploy your own copy:
+
 1. Import the repo and set the **Root Directory** to `src`.
 2. Deploy. No `requirements.txt` is needed.
 3. `vercel.json` bundles `core/**` and `data/**` with the API functions, serves `public/` as static files and sets the security headers.
